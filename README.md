@@ -6,3 +6,12 @@
 
  ## 如何访问
  http://localhost:3000/
+
+ ## 发送接口
+ request: get post put patch delete
+ service: const getUser = (params) => get('/user', params).then((res) => {
+  return res;
+ });
+
+ ## 后端的一个 web 服务
+ - 使用的是json-server
