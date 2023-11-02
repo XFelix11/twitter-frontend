@@ -1,6 +1,6 @@
 import './index.css';
-import { useState } from 'react';
 import { Button, Form, Input, Dialog} from 'antd-mobile';
+import { loginService } from  '../../services/login'
 
 const initialValues = {
   username: 'hhhh',
@@ -8,12 +8,21 @@ const initialValues = {
 };
 const Login = () =>{
   const [form] = Form.useForm()
-  const onSubmit = () => {
-    const values = form.getFieldsValue()
+
+  const onSubmit = async() => {
+    const values = form.getFieldsValue();
+    const res = await loginService(values.username, values.password);
+    if (res && res.length > 0) {
+      Dialog.alert({
+        content: JSON.stringify(res),
+      });
+      return;
+    }
     Dialog.alert({
-      content: <pre>{JSON.stringify(values, null, 2)}</pre>,
-    })
-  }
+      content: 'username or password is incorrect',
+    });
+
+  };
 
   return (
     <div className="login">
