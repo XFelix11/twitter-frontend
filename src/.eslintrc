@@ -8,13 +8,26 @@
     }
   },
   "rules": {
-    "react/jsx-filename-extension": [1, { "extension": ".js"} ],
+    "react/jsx-filename-extension": [1, { "extension": [".js"] }],
     "react/react-in-jsx-scope": 0,
     "react/function-component-definition": 0,
     "vue/max-attributes-per-line": "off"
   },
   "env": {
     "browser": true
+  },
+  "settings": {
+    "import/resolver" : {
+      "alias": {
+        "map": [
+          ["@components", "./src/components"],
+          ["@assets", "./src/assets"],
+          ["@utils", "./src/utils"],
+          ["@services", "./src/services"],
+          ["@containers", "./src/containers"]
+        ]
+      }
+    }
   }
 
  }
