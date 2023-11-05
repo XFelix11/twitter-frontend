@@ -13,6 +13,23 @@
     line-height: 68px;
   }
 
+  .formContainer {
+    :global(.adm-list-body) {
+      background: none;
+      border: none;
+    }
+    :global(.adm-list-item) {
+      background: none;
+      padding: 0;
+      margin: 0;
+    }
+    :global(.adm-list-item-content) {
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+  }
+
   .input {
     composes: input from '../../common.module.css';
   }
