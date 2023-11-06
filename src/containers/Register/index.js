@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Button, Input, Form } from 'antd-mobile';
+import { Button, Form } from 'antd-mobile';
 import Header from '@components/Header';
 import DatePickerInput from '@components/DatePickerInput';
+import TInput from '@components/TInput';
 
 import style from './index.module.scss';
 
@@ -48,7 +49,7 @@ const Register = () => {
             name="name"
             rules={[{ required: true, message: 'Please input your name.' }]}
           >
-            <Input placeholder="Username" className={style.input} />
+            <TInput length={50} label="Username" />
           </Form.Item>
           <Form.Item>
             {accountType === ACCOUNT_TYPE.TEL && (
@@ -56,7 +57,7 @@ const Register = () => {
               name="tel"
               rules={[{ required: true, message: 'Please input your phone number.' }]}
             >
-              <Input placeholder="Phone Number" className={style.input} />
+              <TInput length={11} label="Phone Number" />
             </Form.Item>
             )}
             {accountType === ACCOUNT_TYPE.EMAIL && (
@@ -64,7 +65,7 @@ const Register = () => {
               name="email"
               rules={[{ required: true, message: 'Please input your email.' }]}
             >
-              <Input placeholder="Email" className={style.input} />
+              <TInput length={254} label="email" />
             </Form.Item>
             )}
           </Form.Item>
