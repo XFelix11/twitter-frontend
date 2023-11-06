@@ -13,6 +13,7 @@ const ACCOUNT_TYPE = {
 // register page
 
 const Register = () => {
+  const [form] = Form.useForm();
   const [formData] = useState({
     name: '',
     tel: '',
@@ -30,23 +31,39 @@ const Register = () => {
     setAccountType(ACCOUNT_TYPE.TEL);
   };
 
+  const onClickNextStep = async () => {
+    const validate = await form.validateFields();
+    if (validate) {
+      console.log(validate);
+    }
+  };
+
   return (
     <div>
       <Header />
       <div className={style.form}>
         <div className={style.formTitle}>Create Your Account</div>
-        <Form initialValues={formData} className={style.formContainer}>
-          <Form.Item name="name">
+        <Form form={form} initialValues={formData} className={style.formContainer}>
+          <Form.Item
+            name="name"
+            rules={[{ required: true, message: 'Please input your name.' }]}
+          >
             <Input placeholder="Username" className={style.input} />
           </Form.Item>
           <Form.Item>
             {accountType === ACCOUNT_TYPE.TEL && (
-            <Form.Item name="tel">
+            <Form.Item
+              name="tel"
+              rules={[{ required: true, message: 'Please input your phone number.' }]}
+            >
               <Input placeholder="Phone Number" className={style.input} />
             </Form.Item>
             )}
             {accountType === ACCOUNT_TYPE.EMAIL && (
-            <Form.Item name="email">
+            <Form.Item
+              name="email"
+              rules={[{ required: true, message: 'Please input your email.' }]}
+            >
               <Input placeholder="Email" className={style.input} />
             </Form.Item>
             )}
@@ -62,7 +79,7 @@ const Register = () => {
         </Form>
       </div>
       <div className={style.footer}>
-        <Button className={style.footerButton}>Next</Button>
+        <Button className={style.footerButton} onClick={onClickNextStep}>Next</Button>
       </div>
     </div>
   );

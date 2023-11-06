@@ -4,15 +4,15 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import datelogo from '../../assets/datepicker-icon.svg';
 
-import style from './index.module.css';
+import style from './index.module.scss';
 
 const DatePickerInput = ({
   value,
-  onChange
+  onChange,
 
 }) => {
   const [visible, setVisible] = useState(false);
-  const [curDate, setCurDate] = useState();
+
   const onClickDatePicker = () => {
     setVisible(true);
   };
@@ -25,7 +25,7 @@ const DatePickerInput = ({
           setVisible(false);
         }}
         onConfirm={(val) => {
-          onChange(val);
+          onChange(moment(val).format('YYYYMMDD'));
         }}
       />
       <div className={style.birthdayInput} onClick={onClickDatePicker}>
@@ -41,7 +41,7 @@ const DatePickerInput = ({
 
 DatePickerInput.propTypes = {
   value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired
-}
+  onChange: PropTypes.func.isRequired,
+};
 
 export default DatePickerInput;
