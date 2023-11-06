@@ -40,8 +40,13 @@ const DatePickerInput = ({
 };
 
 DatePickerInput.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+};
+
+DatePickerInput.defaultProps = {
+  value: '',
+  onChange: () => {},
 };
 
 export default DatePickerInput;
