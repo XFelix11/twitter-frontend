@@ -50,7 +50,9 @@
     width: 100%;
   }
 
-  .footerButton {
+
+
+  .footerButtonDisabled {
     margin: 0 auto;
     border-radius: 50px;
     background-color: $tGray; 
@@ -59,3 +61,8 @@
     width: 80%;
     height: 40px;
   }
+
+.footerButton {
+  composes: footerButtonDisabled;
+  background-color: #000;
+}
