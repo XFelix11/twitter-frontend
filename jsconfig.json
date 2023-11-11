@@ -4,7 +4,9 @@
     "paths": {
       "@components/*": ["./components/*"],
       "@assets/*": ["./assets/*"],
-      "@containers/*": ["./containers/*"]
+      "@utils/*": ["./utils/*"],
+      "@containers/*": ["./containers/*"],
+      "@services/*": ["./services/*"]
     }
   },
   "exclude": ["node_modules"]

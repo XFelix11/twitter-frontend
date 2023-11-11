@@ -1,15 +1,15 @@
 import { Input } from 'antd-mobile';
 import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, forwardRef } from 'react';
 
 import style from './index.module.scss';
 
-const TInput = ({
+const TInput = forwardRef(({
   label,
   value,
   length,
   onChange,
-}) => {
+}, ref) => {
   const [isFocused, setIsFocused] = useState(false);
   const [hide, setHide] = useState(false);
 
@@ -40,12 +40,12 @@ const TInput = ({
   };
 
   return (
-    <div className={hide ? style.tInputFocused : style.tInput}>
+    <div className={hide ? style.tInputFocused : style.tInput} ref={ref}>
       <div className={isFocused ? style.labelFocused : style.Label}>
         {label}
         {hide && length && (
           <span className={style.labelRight}>
-            {value.length}
+            {value?.length}
             /
             {length}
           </span>
@@ -60,7 +60,7 @@ const TInput = ({
       />
     </div>
   );
-};
+});
 
 TInput.propTypes = {
   label: PropTypes.string,
