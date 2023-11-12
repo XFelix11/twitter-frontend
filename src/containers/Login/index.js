@@ -1,49 +1,69 @@
-import './index.css';
-import { Button, Form, Input, Dialog} from 'antd-mobile';
-import { loginService } from  '../../services/login'
+import {
+  Button, Form, Dialog,
+} from 'antd-mobile';
+import Header from '@components/Header';
+import TInput from '@components/TInput';
+import { login } from '../../services/login';
 
-const initialValues = {
-  username: 'hhhh',
-  password: '112345',
-};
-const Login = () =>{
-  const [form] = Form.useForm()
+import style from './index.module.scss';
 
-  const onSubmit = async() => {
-    const values = form.getFieldsValue();
-    const res = await loginService(values.username, values.password);
-    if (res && res.length > 0) {
+// Login page
+const Login = () => {
+  const [form] = Form.useForm();
+
+  const onSubmit = async () => {
+    const values = await form.validateFields();
+    if (values) {
+      const res = await login(values.username, values.password);
+      if (res.success && res.data.length > 0) {
+        Dialog.alert({
+          content: 'Sign in successfully!',
+        });
+        return;
+      }
       Dialog.alert({
-        content: JSON.stringify(res),
+        content: 'Username or password is incorrect :(',
       });
-      return;
     }
-    Dialog.alert({
-      content: 'username or password is incorrect',
-    });
-
   };
 
   return (
-    <div className="login">
-      <Form 
-        form={form}
-        layout='horizontal' mode='card' initialValues={initialValues}
-        footer={
-          <Button block color='primary' onClick={onSubmit} size='large'>
-            Login
+    <>
+      <Header />
+      <div className={style.login}>
+        <div className={style.formTitle}>Sign in to SchoolConnect</div>
+        <Form
+          form={form}
+          className={style.formContainer}
+        >
+          <Form.Item
+            name="username"
+            rules={[
+              { required: true, message: 'Please input your username!' },
+            ]}
+          >
+            <TInput label="Username" />
+          </Form.Item>
+          <Form.Item
+            name="password"
+            rules={[
+              { required: true, message: 'Please input your password!' },
+            ]}
+          >
+            <TInput label="Password" type="password" />
+          </Form.Item>
+          <Button className={style.footerButton} onClick={onSubmit}>
+            Next
           </Button>
-        }
-      >
-        <Form.Item label='Username' name='username'>
-          <Input placeholder='Please input username' clearable />
-        </Form.Item>
-        <Form.Item label='Password' name='password'>
-          <Input placeholder='Please input password' clearable type='password' />
-        </Form.Item>
-      </Form> 
-    </div>
+        </Form>
+        <div className={style.goToRegister}>
+          No account?
+          <a href="/register" target="_blank">Register</a>
+        </div>
+
+      </div>
+    </>
   );
-}
+};
 
 export default Login;
