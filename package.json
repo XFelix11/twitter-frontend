@@ -9,6 +9,7 @@
     "antd-mobile": "^5.33.0",
     "antd-mobile-icons": "^0.3.0",
     "axios": "^1.6.0",
+    "classnames": "^2.3.2",
     "craco-alias": "^3.0.1",
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-import": "^2.29.0",
