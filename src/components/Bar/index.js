@@ -1,13 +1,15 @@
 import { useState } from'react';
 import { TabBar } from 'antd-mobile';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import msgSvg from '@assets/msg.svg';
 import starSvg from '@assets/star.svg';
 import upSvg from '@assets/up.svg';
 import cycleSvg from '@assets/cycle.svg';
 
 import style from './index.module.scss';
-import { parsePath } from 'react-router-dom';
+
+
 
 const getBars = ({
   commentCount,
@@ -43,6 +45,7 @@ const getBars = ({
 bar with comment, forward, like, share 
 */
 const Bar = ({
+  isBottom,
   likeCount,
   commentCount,
 }) => {
@@ -53,7 +56,11 @@ const Bar = ({
   };
 
   return (
-    <div className={style.container}>
+    <div className={classNames({
+      [style.container]: !isBottom,
+      [style.containerBottom]: isBottom,
+    })}
+    >
       <TabBar activeKey={activeKey} onChange={onChangeTabItem}>
         {getBars({
           likeCount,
@@ -69,6 +76,7 @@ const Bar = ({
 Bar.propTypes = {
   commentCount: PropTypes.number.isRequired,
   likeCount: PropTypes.number.isRequired,
+  isBottom: PropTypes.bool,
 };
 
 export default Bar;
