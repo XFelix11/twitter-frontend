@@ -1,12 +1,13 @@
-
-
-
+@import '../../index.scss';
 .header {
+  position: fixed;
   height: 50px;
+  top: 0;
   text-align:  center;  
+  width: 100%;
+  z-index: 1;
+  background-color: rgba(255,255,255, 0.95);
 }
-
-
 .closeIcon {
   position: absolute;
   top: 18px;
@@ -17,4 +18,43 @@
 .twitterLogo { 
   height: 30px;
   margin-top: 10px;
+}
+
+.backHeader {
+  position: absolute;
+  top: 12px;
+  left: 20px;
+}
+
+.avatar {
+  height: 25px;
+  border-radius: 50%;
+  position: absolute;
+  top: 12px;
+  left: 20px;
+}
+.title {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 50px;
+  position: absolute;
+  left: 60px;
+}
+.back {
+  width: 20px;
+  vertical-align: middle;
+  float: left;
+  margin: 15px;
+}
+.button {
+  height: 30px;
+  margin: 10px;
+  line-height: 30px;
+  padding: 0 15px;
+  background-color: #1d9bf0;
+  border-radius: 9999px;
+  font-size: 14px;
+  color: #fff;
+  font-weight: bolder;
+  float: right;
 }

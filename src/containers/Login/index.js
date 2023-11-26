@@ -6,14 +6,16 @@ import {
 } from 'antd-mobile';
 import { Link } from 'react-router-dom';
 import { useAppContext } from '@utils/context';
-// import Header from '@components/Header';
 import TInput from '@components/TInput';
+import Cookies from 'js-cookie';
 import { login } from '../../services/login';
+import { useGoTo } from '@utils/hooks';
 import style from './index.module.scss';
 
 // Login page
 const Login = () => {
   const [form] = Form.useForm();
+  const go = useGoTo();
 
   const [, setStore] = useAppContext();
   useEffect(() => {
@@ -30,6 +32,8 @@ const Login = () => {
         Dialog.alert({
           content: 'Sign in successfully!',
         });
+        Cookies.set('userId', res.data[0].id);
+        go('tweets');
         return;
       }
       Dialog.alert({
