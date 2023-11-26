@@ -14,9 +14,16 @@ export const CxtProvider = ({
 }) => {
   const [store, setStore] = useState(defaultStore);
 
+  const update = (v) => {
+    setStore((st) => ({
+      ...st,
+      ...v,
+    }));
+  }
+
   const value = useMemo(() => ({
     store,
-    setStore,
+    update,
   }),[store]);
 
   return (
@@ -33,5 +40,5 @@ CxtProvider.propTypes = {
 export const useAppContext = () => {
   const cxt = useContext(AppContext);
 
-  return [cxt.store, cxt.setStore];
+  return [cxt.store, cxt.update];
 };
